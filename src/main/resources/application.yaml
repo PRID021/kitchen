@@ -1,0 +1,21 @@
+spring:
+  # jms:
+  #   template:
+  #     default-destination: tacocloud.order.queue
+  #   listener:
+  #     auto-startup: true
+  # artemis:
+  #   broker-url: tcp://localhost:61616
+  #   user: hoang92Taco
+  #   password: hoang92Taco
+  kafka:
+    bootstrap-servers:
+    - 192.168.1.14:9092
+    template:
+      default-topic: tacocloud.order.queue
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: com.sia.kitchen.JavaSerializer
+server:
+  port: 4444
+
