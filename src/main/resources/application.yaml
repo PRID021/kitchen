@@ -10,7 +10,7 @@ spring:
   #   password: hoang92Taco
   kafka:
     bootstrap-servers:
-    - 192.168.1.14:9092
+    - localhost:9092
     template:
       default-topic: tacocloud.order.queue
     producer:
