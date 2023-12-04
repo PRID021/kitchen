@@ -1,11 +1,14 @@
 package com.sia.kitchen.receiver;
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 // import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.annotation.KafkaListener;
 // import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
-import com.sia.kitchen.models.TacoOrder;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+
 
 
 // @Profile("jms-listener")
@@ -18,9 +21,11 @@ public class OrderListener {
     }
 
     // @JmsListener(destination =  "tacocloud.order.queue")
-    @KafkaListener(topics = "tacocloud.orders.topic",groupId = "order-group")
-    public void receiveOrder(TacoOrder order){
+    @KafkaListener(topics = "tacocloud.order.queue",groupId = "order-group")
+    public void receiveOrder(Object order){
                 System.out.println("OrderListener have been created");
-        ui.displayOrder(order);
+        Object objectValue = ((ConsumerRecord) order).value();
+        
+        ui.displayOrder(objectValue);
     }
 }

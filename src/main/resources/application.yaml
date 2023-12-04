@@ -13,9 +13,9 @@ spring:
     - localhost:9092
     template:
       default-topic: tacocloud.order.queue
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: com.sia.kitchen.JavaSerializer
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: com.sia.kitchen.StringDeserializer
 server:
   port: 4444
 
